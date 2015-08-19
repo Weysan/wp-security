@@ -10,6 +10,7 @@
  * @see https://www.dfactory.eu/turn-off-disable-comments/
  * @see https://www.icontrolwp.com/2012/11/more-wordpress-security-disallow-file-edit-setting-wordpress/
  * @see http://codex.wordpress.org/Hardening_WordPress
+ * @see http://www.wpbeginner.com/wp-tutorials/9-most-useful-htaccess-tricks-for-wordpress/
  * 
  */
 
@@ -27,17 +28,15 @@ define( 'WP_AUTO_UPDATE_CORE', false );
 add_action('init', 'remove_unecessary_file');
 function remove_unecessary_file(){
     
-    if ( !function_exists( 'get_home_path' ) )
-	require_once( dirname(__FILE__) . '/../../../../wp-admin/includes/file.php' );
+    $tpl_dir = parse_url(get_template_directory_uri() . '/functions');
+    $path = str_replace($tpl_dir['path'], '', dirname(__FILE__));
     
-    $path = get_home_path();
-    
-    if(file_exists($path . 'readme.html')){
-        unlink($path . 'readme.html');
+    if(file_exists($path . '/readme.html')){
+        unlink($path . '/readme.html');
     }
     
-    if(file_exists($path . 'license.txt')){
-        unlink($path . 'license.txt');
+    if(file_exists($path . '/license.txt')){
+        unlink($path . '/license.txt');
     }
     
 }
