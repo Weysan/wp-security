@@ -14,13 +14,37 @@
  */
 
 
-//Enlever les balises meta générés par wordpress
+//Enlever les balises meta gÃ©nÃ©rÃ©s par wordpress
 remove_action('wp_head', 'wp_generator');
 //on enleve l'editeur dans le BO
 define( 'DISALLOW_FILE_EDIT', true );
 
-//on enlève la mise à jour auto
+//on enlÃ¨ve la mise Ã  jour auto
 define( 'WP_AUTO_UPDATE_CORE', false );
+
+
+/* supression automatique du fichier readme.html et license.txt */
+add_action('init', 'remove_unecessary_file');
+function remove_unecessary_file(){
+    
+    if ( !function_exists( 'get_home_path' ) )
+	require_once( dirname(__FILE__) . '/../../../../wp-admin/includes/file.php' );
+    
+    $path = get_home_path();
+    
+    if(file_exists($path . 'readme.html')){
+        unlink($path . 'readme.html');
+    }
+    
+    if(file_exists($path . 'license.txt')){
+        unlink($path . 'license.txt');
+    }
+    
+}
+
+
+
+
 
 // Disable support for comments and trackbacks in post types
 function df_disable_comments_post_types_support() {
