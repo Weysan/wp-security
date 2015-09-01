@@ -12,6 +12,8 @@
  * @see http://codex.wordpress.org/Hardening_WordPress
  * @see http://www.wpbeginner.com/wp-tutorials/9-most-useful-htaccess-tricks-for-wordpress/
  * 
+ * test slack integration
+ * 
  */
 
 
