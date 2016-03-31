@@ -99,3 +99,24 @@ function df_disable_comments_admin_bar() {
 	}
 }
 add_action('init', 'df_disable_comments_admin_bar');
+
+/* custom content type restriction */
+/*
+//redirection si pas prévu de page détail
+add_action( 'template_redirect', 'wpse_128636_redirect_post' );
+
+function wpse_128636_redirect_post() {
+  $queried_post_type = get_query_var('post_type');
+  if ( is_single() && 'download' ==  $queried_post_type ) {
+    wp_redirect( home_url(), 301 );
+    exit;
+  }
+}
+
+function custom_robots($output) {
+    $output .= 'Disallow: /download/*' . "\n";
+
+    return $output;
+}
+add_filter('robots_txt','custom_robots');
+*/
